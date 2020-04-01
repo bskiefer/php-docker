@@ -29,4 +29,4 @@ ENV PATH /root/.composer/vendor/bin:$PATH
 
 RUN composer global require hirak/prestissimo
 
-CMD ["composer"]
+CMD ["composer", "php"]
