@@ -2,7 +2,7 @@ FROM php:7.3-fpm
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y libmcrypt-dev default-libmysqlclient-dev libsodium-dev libzip-dev zip ssh-client ca-certificates zlib1g-dev openssl \
-    && pecl install mcrypt-1.0.1 \
+    && pecl install mcrypt-1.0.2 \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install sodium \
