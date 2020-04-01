@@ -28,5 +28,3 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php -- --inst
 ENV PATH /root/.composer/vendor/bin:$PATH
 
 RUN composer global require hirak/prestissimo
-
-CMD ["composer", "php"]
