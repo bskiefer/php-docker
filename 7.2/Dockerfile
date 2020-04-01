@@ -24,5 +24,8 @@ RUN apt-get update && \
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-WORKDIR /var/www
+RUN composer global require hirak/prestissimo
 
+ENV PATH /root/.composer/vendor/bin:$PATH
+
+CMD ["composer"]
