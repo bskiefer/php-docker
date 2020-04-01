@@ -1,4 +1,5 @@
 FROM php:7.2-fpm
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y libmcrypt-dev default-libmysqlclient-dev libsodium-dev libzip-dev zip \
     && pecl install mcrypt-1.0.1 \
