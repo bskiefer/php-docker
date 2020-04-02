@@ -43,6 +43,11 @@ RUN wget https://github.com/phpmetrics/PhpMetrics/raw/master/releases/phpmetrics
     && mv phpmetrics.phar /bin/phpmetrics \
     && chmod +x /bin/phpmetrics
 
+# PhpCS
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+    && mv phpcs.phar /bin/phpcs \
+    && chmod +x /bin/phpcs
+
 CMD ["/bin/bash"]
 COPY docker-php-entrypoint /usr/local/bin/
 ENTRYPOINT ["docker-php-entrypoint"]
