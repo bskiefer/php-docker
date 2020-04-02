@@ -27,3 +27,22 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php -- --inst
 ENV PATH /root/.composer/vendor/bin:$PATH
 
 RUN composer global require hirak/prestissimo
+
+# PhpLoc
+RUN apt-get install wget && wget https://phar.phpunit.de/phploc.phar \
+    && mv phploc.phar /bin/phploc \
+    && chmod +x /bin/phploc
+
+# PhpStan
+RUN wget https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar \
+    && mv phpstan.phar /bin/phpstan \
+    && chmod +x /bin/phpstan
+
+# PhpMetrics
+RUN wget https://github.com/phpmetrics/PhpMetrics/raw/master/releases/phpmetrics.phar \
+    && mv phpmetrics.phar /bin/phpmetrics \
+    && chmod +x /bin/phpmetrics
+
+CMD ["/bin/bash"]
+COPY docker-php-entrypoint /usr/local/bin/
+ENTRYPOINT ["docker-php-entrypoint"]
