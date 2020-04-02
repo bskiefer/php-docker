@@ -42,8 +42,14 @@ RUN echo "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc" >> ~/.bashrc
 RUN echo 'export PHPBREW_ROOT="/root/.phpbrew"' >> ~/.bashrc
 RUN echo 'export PHPBREW_HOME=/root/.phpbrew' >> ~/.bashrc
 RUN phpbrew install --stdout 7.0 as 7.0
+RUN phpbrew install --stdout 7.2 as 7.2
+RUN phpbrew install --stdout 7.3 as 7.3
+RUN phpbrew install --stdout 7.4 as 7.4
 
 RUN echo 'alias php70=/root/.phpbrew/php/7.0/bin/php' >> ~/.bashrc
+RUN echo 'alias php72=/root/.phpbrew/php/7.2/bin/php' >> ~/.bashrc
+RUN echo 'alias php73=/root/.phpbrew/php/7.3/bin/php' >> ~/.bashrc
+RUN echo 'alias php74=/root/.phpbrew/php/7.4/bin/php' >> ~/.bashrc
 
 RUN apt-get update && apt-get install -y libmcrypt-dev default-libmysqlclient-dev libsodium-dev libzip-dev zip ssh-client ca-certificates zlib1g-dev openssl php7.4-cli php7.4-common php7.4-curl php7.4-mbstring php7.4-mysql php7.4-xml
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
