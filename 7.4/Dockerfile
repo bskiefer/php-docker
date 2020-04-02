@@ -73,6 +73,12 @@ RUN wget https://get.sensiolabs.org/security-checker.phar \
     && mv security-checker.phar /bin/security-checker \
     && chmod +x /bin/security-checker
 
+# GH Commenter
+RUN wget https://github.com/cloudposse/github-commenter/releases/download/0.5.0/github-commenter_linux_amd64 \
+    && mv github-commenter_linux_amd64 /bin/gh-commenter \
+    && chmod +x /bin/gh-commenter
+
+
 CMD ["/bin/bash"]
 COPY docker-php-entrypoint /usr/local/bin/
 ENTRYPOINT ["docker-php-entrypoint"]
