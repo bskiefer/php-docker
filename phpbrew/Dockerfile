@@ -52,5 +52,6 @@ RUN composer global require hirak/prestissimo
 RUN apt-get install git -y && git --version
 WORKDIR /root
 
+CMD ["/bin/bash"]
 COPY docker-php-entrypoint /usr/local/bin/
 ENTRYPOINT ["docker-php-entrypoint"]
