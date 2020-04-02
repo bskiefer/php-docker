@@ -45,7 +45,12 @@ RUN phpbrew install --stdout 7.0 as 7.0
 
 RUN echo 'alias php70=/root/.phpbrew/php/7.0/bin/php' >> ~/.bashrc
 
-RUN cat /root/.bashrc && which php
+RUN apt-get update && apt-get install -y libmcrypt-dev default-libmysqlclient-dev libsodium-dev libzip-dev zip ssh-client ca-certificates zlib1g-dev openssl
+
+RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ENV PATH /root/.composer/vendor/bin:$PATH
+RUN composer global require hirak/prestissimo
+
 WORKDIR /root
 
 COPY docker-php-entrypoint /usr/local/bin/
