@@ -48,6 +48,31 @@ RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
     && mv phpcs.phar /bin/phpcs \
     && chmod +x /bin/phpcs
 
+# Psalm
+RUN wget https://github.com/psalm/phar/raw/master/psalm.phar \
+    && mv psalm.phar /bin/psalm \
+    && chmod +x /bin/psalm
+
+# PhpCpd
+RUN wget https://phar.phpunit.de/phpcpd.phar \
+    && mv phpcpd.phar /bin/phpcpd \
+    && chmod +x /bin/phpcpd
+
+# PhpMd
+RUN wget https://phpmd.org/static/latest/phpmd.phar \
+    && mv phpmd.phar /bin/phpmd \
+    && chmod +x /bin/phpmd
+
+# Rector
+RUN wget https://github.com/rectorphp/rector-prefixed/raw/master/rector.phar \
+    && mv rector.phar /bin/rector \
+    && chmod +x /bin/rector
+
+# Composer Security Checker
+RUN wget https://get.sensiolabs.org/security-checker.phar \
+    && mv security-checker.phar /bin/security-checker \
+    && chmod +x /bin/security-checker
+
 CMD ["/bin/bash"]
 COPY docker-php-entrypoint /usr/local/bin/
 ENTRYPOINT ["docker-php-entrypoint"]
