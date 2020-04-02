@@ -34,7 +34,7 @@ RUN apt-get install wget && wget https://phar.phpunit.de/phploc.phar \
     && chmod +x /bin/phploc
 
 # PhpStan
-RUN wget https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar \
+RUN wget https://github.com/phpstan/phpstan/raw/master/phpstan.phar \
     && mv phpstan.phar /bin/phpstan \
     && chmod +x /bin/phpstan
 
