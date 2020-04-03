@@ -28,3 +28,58 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php -- --inst
 ENV PATH /root/.composer/vendor/bin:$PATH
 
 RUN composer global require hirak/prestissimo
+
+# PhpLoc
+RUN apt-get install wget && wget https://phar.phpunit.de/phploc.phar \
+    && mv phploc.phar /bin/phploc \
+    && chmod +x /bin/phploc
+
+# PhpStan
+RUN wget https://github.com/phpstan/phpstan/raw/master/phpstan.phar \
+    && mv phpstan.phar /bin/phpstan \
+    && chmod +x /bin/phpstan
+
+# PhpMetrics
+RUN wget https://github.com/phpmetrics/PhpMetrics/raw/master/releases/phpmetrics.phar \
+    && mv phpmetrics.phar /bin/phpmetrics \
+    && chmod +x /bin/phpmetrics
+
+# PhpCS
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+    && mv phpcs.phar /bin/phpcs \
+    && chmod +x /bin/phpcs
+
+# Psalm
+RUN wget https://github.com/psalm/phar/raw/master/psalm.phar \
+    && mv psalm.phar /bin/psalm \
+    && chmod +x /bin/psalm
+
+# PhpCpd
+RUN wget https://phar.phpunit.de/phpcpd.phar \
+    && mv phpcpd.phar /bin/phpcpd \
+    && chmod +x /bin/phpcpd
+
+# PhpMd
+RUN wget https://phpmd.org/static/latest/phpmd.phar \
+    && mv phpmd.phar /bin/phpmd \
+    && chmod +x /bin/phpmd
+
+# Rector
+RUN wget https://github.com/rectorphp/rector-prefixed/raw/master/rector.phar \
+    && mv rector.phar /bin/rector \
+    && chmod +x /bin/rector
+
+# Composer Security Checker
+RUN wget https://get.sensiolabs.org/security-checker.phar \
+    && mv security-checker.phar /bin/security-checker \
+    && chmod +x /bin/security-checker
+
+# GH Commenter
+RUN wget https://github.com/cloudposse/github-commenter/releases/download/0.5.0/github-commenter_linux_amd64 \
+    && mv github-commenter_linux_amd64 /bin/gh-commenter \
+    && chmod +x /bin/gh-commenter
+
+
+CMD ["/bin/bash"]
+COPY docker-php-entrypoint /usr/local/bin/
+ENTRYPOINT ["docker-php-entrypoint"]
