@@ -34,23 +34,11 @@ RUN apt-get update && \
     xvfb \
     git \
     curl \
-    apache2 \
-    libapache2-mod-php5.6 \
     openssl && \
     apt-get clean && \
-    chmod 755 /*.sh && \
     mkdir -p /etc/supervisor/conf.d && \
-    echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
     phpenmod mcrypt && \
-    phpenmod curl && \
-    a2enmod rewrite && \
-    a2enmod headers && \
-    a2enmod deflate && \
-    a2enmod env && \
-    a2enmod expires && \
-    chmod +x /install-composer.sh && \
-    /install-composer.sh && \
-    mv composer.phar /usr/bin/composer
+    phpenmod curl
 
 RUN apt-get update && apt-get install -y php5-mcrypt default-libmysqlclient-dev libsodium-dev libzip-dev zip ssh-client ca-certificates zlib1g-dev openssl \
     && pecl install mcrypt-1.0.1 \
@@ -77,5 +65,3 @@ RUN apt-get update && \
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ENV PATH /root/.composer/vendor/bin:$PATH
-
-RUN composer global require hirak/prestissimo
