@@ -40,23 +40,14 @@ RUN apt-get update && \
     phpenmod mcrypt && \
     phpenmod curl
 
-RUN apt-get update && apt-get install -y mysql-client libsodium-dev libzip-dev zip ssh-client ca-certificates zlib1g-dev openssl \
-    && pecl install mcrypt-1.0.1 \
-    && docker-php-ext-enable mcrypt \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install sodium \
-    && docker-php-ext-install bcmath \
-    && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install zip
+RUN apt-get clean
 
-RUN pecl install redis \
-  && docker-php-ext-enable redis
+RUN apt-get update && apt-get install -y libsodium-dev libzip-dev zip ssh-client ca-certificates zlib1g-dev openssl
+
+RUN apt-get install php5.6-redis -y
 
 RUN apt-get update && \
-    apt-get install libldap2-dev -y && \
-    rm -rf /var/lib/apt/lists/* && \
-    docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
-    docker-php-ext-install ldap
+    apt-get install libldap2-dev -y
 
 # Install Composer
 RUN apt-get update && \

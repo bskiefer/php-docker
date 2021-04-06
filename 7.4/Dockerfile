@@ -26,8 +26,6 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php -- --inst
 
 ENV PATH /root/.composer/vendor/bin:$PATH
 
-RUN composer global require hirak/prestissimo
-
 # PhpLoc
 RUN apt-get install wget && wget https://phar.phpunit.de/phploc.phar \
     && mv phploc.phar /bin/phploc \
